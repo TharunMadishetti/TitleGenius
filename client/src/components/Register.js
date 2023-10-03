@@ -39,7 +39,7 @@ export default function Register({user,setUser}) {
                 {
                     toast.success(res.message,toastOptions);
                     setUser(usr);
-                    localStorage.setItem('sye-user',JSON.stringify(usr));
+                    localStorage.setItem('user',JSON.stringify(usr));
                     navigate("/");
                 }
                 else

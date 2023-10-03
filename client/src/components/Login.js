@@ -16,9 +16,17 @@ export default function Login({user,setUser}) {
     const [email,setEmail]=useState("");
     const [pswd,setPswd]=useState("");
     useEffect(()=>{
-        if (user) {
-          navigate("/");
-        } 
+        if (!user && !localStorage.getItem('user')) {
+             console.log('ok')
+          } else {
+            const get =async ()=>{
+              return await JSON.parse(localStorage.getItem('user'))
+            }
+            get()
+            .then((res)=>{
+              setUser(res)
+            });
+          }
       },[])
     const handleSubmit = async  (e)=>{
         e.preventDefault();
@@ -36,7 +44,7 @@ export default function Login({user,setUser}) {
             {
                 const usr = res.user;
                 setUser(usr);
-                await localStorage.setItem('sye-user',JSON.stringify(usr));
+                localStorage.setItem('user',JSON.stringify(usr));
                 navigate("/")
             }
             else

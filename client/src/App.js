@@ -13,17 +13,17 @@ function App() {
   const [theme,setTheme] = useState(true);
   const [user,setUser]=useState(null);
   useEffect(()=>{
-    if (!user && !localStorage.getItem('user')) {
-      navigate("/login");
-    } else {
-      const get =async ()=>{
-        return await JSON.parse(localStorage.getItem('user'))
-      }
-      get()
-      .then((res)=>{
-        setUser(res)
-      });
-    }
+    // if (!user && !localStorage.getItem('user')) {
+    //   navigate("/login");
+    // } else {
+    //   const get =async ()=>{
+    //     return await JSON.parse(localStorage.getItem('user'))
+    //   }
+    //   get()
+    //   .then((res)=>{
+    //     setUser(res)
+    //   });
+    // }
   },[])
   const logout = (e)=>{
     setUser(null);
@@ -53,12 +53,12 @@ function App() {
  
   return (
     <div className={`App h-screen ${!theme?"bg-black text-white":""}`}>
-        {user && <NavBar className='' theme={theme} setTheme={setTheme} logout={logout} username={user.username}/>}
+        <NavBar className='' theme={theme} setTheme={setTheme} logout={logout} />
         <Routes>
             <Route path="/" element={<p>Home</p>}/>
             <Route path="/mytitles" element={<MyTitles theme={theme}/>}/>
-            <Route exact path='/register' className={`App h-screen ${theme?"bg-black text-white":""}`} element={<Register user={user} setUser={setUser}/>}/>
             <Route exact path='/login' element={<Login user={user} setUser={setUser}/>}/>
+            <Route exact path='/register' className={`App h-screen ${theme?"bg-black text-white":""}`} element={<Register user={user} setUser={setUser}/>}/>
             <Route exact path="*" element={<ErrorPage errorCode={404} errorMessage="Page Not Found"/>}/>
         </Routes>
         <Footer/>

@@ -3,7 +3,7 @@ import React from 'react'
 function Footer() {
   return (
     <div>
-      Footer
+      ©️2023
     </div>
   )
 }

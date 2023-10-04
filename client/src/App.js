@@ -3,6 +3,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import { Routes,Route, useNavigate } from 'react-router-dom';
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 import axios from 'axios';
 import MyTitles from './components/MyTitles'
 import { loginRoute } from './Utils/APIRoutes';
@@ -60,6 +61,7 @@ function App() {
             <Route exact path='/login' element={<Login user={user} setUser={setUser}/>}/>
             <Route exact path="*" element={<ErrorPage errorCode={404} errorMessage="Page Not Found"/>}/>
         </Routes>
+        <Footer/>
     </div>
   );
 }

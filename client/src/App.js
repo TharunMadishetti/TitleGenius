@@ -3,11 +3,14 @@ import Login from './components/Login';
 import Register from './components/Register';
 import { Routes,Route, useNavigate } from 'react-router-dom';
 import NavBar from './components/NavBar';
-import Footer from './components/Footer';
+ import Footer from './components/Footer';
+ import Home from './components/Home';
 import axios from 'axios';
 import MyTitles from './components/MyTitles'
 import { loginRoute } from './Utils/APIRoutes';
 import ErrorPage from './components/ErrorPage';
+// import Home from './components/Home';
+// import Footer from './components/Footer';
 function App() {
   const navigate = useNavigate();
   const [theme,setTheme] = useState(true);
@@ -33,29 +36,16 @@ function App() {
 
   const updateUser = async () => {
      console.log('user updated');
-     console.log(user);
-    try
-    {
-
-      let res = await axios.post(loginRoute,{
-        email:user.email,
-        password:'aaA.1&'
-      })
-      res=res.data;
-      console.log('new user');
-      setUser(res.user);
-    }
-    catch(err)
-    {
-      console.log(err)
-    }
+     
   }
  
   return (
-    <div className={`App h-screen ${!theme?"bg-black text-white":""}`}>
-        {user && <NavBar className='' theme={theme} setTheme={setTheme} username={user.username} logout={logout} />}
+
+    <div className={`App h-screen ${!theme?"bg-black text-white":""} flex flex-col justify-between`}>
+        {user && <NavBar className='' theme={theme} updateUser={updateUser} setTheme={setTheme} username={user.username} logout={logout} />}
+        {/* <NavBar className='' theme={theme} setTheme={setTheme} logout={logout} /> */}
         <Routes>
-            <Route path="/" element={<p>Home</p>}/>
+            <Route path="/" element={<Home/>}/>
             <Route path="/mytitles" element={<MyTitles theme={theme}/>}/>
             <Route exact path='/login' element={<Login user={user} setUser={setUser}/>}/>
             <Route exact path='/register' className={`App h-screen ${theme?"bg-black text-white":""}`} element={<Register user={user} setUser={setUser}/>}/>

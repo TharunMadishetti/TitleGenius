@@ -13,17 +13,17 @@ function App() {
   const [theme,setTheme] = useState(true);
   const [user,setUser]=useState(null);
   useEffect(()=>{
-    // if (!user && !localStorage.getItem('user')) {
-    //   navigate("/login");
-    // } else {
-    //   const get =async ()=>{
-    //     return await JSON.parse(localStorage.getItem('user'))
-    //   }
-    //   get()
-    //   .then((res)=>{
-    //     setUser(res)
-    //   });
-    // }
+    if (!user && !localStorage.getItem('user')) {
+      navigate("/login");
+    } else {
+      const get =async ()=>{
+        return await JSON.parse(localStorage.getItem('user'))
+      }
+      get()
+      .then((res)=>{
+        setUser(res)
+      });
+    }
   },[])
   const logout = (e)=>{
     setUser(null);
@@ -53,7 +53,7 @@ function App() {
  
   return (
     <div className={`App h-screen ${!theme?"bg-black text-white":""}`}>
-        <NavBar className='' theme={theme} setTheme={setTheme} logout={logout} />
+        {user && <NavBar className='' theme={theme} setTheme={setTheme} username={user.username} logout={logout} />}
         <Routes>
             <Route path="/" element={<p>Home</p>}/>
             <Route path="/mytitles" element={<MyTitles theme={theme}/>}/>

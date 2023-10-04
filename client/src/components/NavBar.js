@@ -47,14 +47,14 @@ export default function NavBar({theme,setTheme,logout,username,nfl,updateUser}){
       >
         MyTitles
       </Link>
-      {username ? <button
+      <button
         className={`${
           theme ? 'text-black' : 'text-white'
         } hover:bg-gray-500 hover:rounded-lg p-2`}
         onClick={(e)=>updateUser(null)}
       >
         {username}
-      </button> : <p>userX</p>}
+      </button>
       <button
         className={`${
           theme ? 'text-black' : 'text-white'

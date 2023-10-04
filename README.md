@@ -1,2 +1,2 @@
 # TitleGenius
-- an AI powered title generator for your blog
+- an AI powered title generator for your blogs.
